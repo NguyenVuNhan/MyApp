@@ -3,10 +3,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { join } from 'path';
+import { User, Avatar } from '@app/api/shared/user';
 
 @Module({
   imports: [
-    PostgresTypeOrmDatabaseModule,
+    PostgresTypeOrmDatabaseModule.registerEntities([User, Avatar]),
     ConfigModule.forRoot({
       envFilePath: join(__dirname, '.env'),
       validationSchema: Joi.object({

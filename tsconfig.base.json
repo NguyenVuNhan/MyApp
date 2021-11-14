@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@app/api/shared/user": ["libs/api/shared/user/src/index.ts"],
       "@app/shared/nest/modules": ["libs/shared/nest/modules/src/index.ts"],
       "@app/shared/nest/utils": ["libs/shared/nest/utils/src/index.ts"]
     }

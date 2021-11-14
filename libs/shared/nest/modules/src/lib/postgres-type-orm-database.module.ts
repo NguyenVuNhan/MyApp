@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-@Module({
-  imports: [
-    TypeOrmModule.forRootAsync({
+@Module({})
+export class PostgresTypeOrmDatabaseModule {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static registerEntities(entities: TypeOrmModuleOptions['entities']) {
+    return TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
@@ -14,10 +16,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        entities: [],
+        entities,
         synchronize: configService.get('NODE_ENV') === 'development',
       }),
-    }),
-  ],
-})
-export class PostgresTypeOrmDatabaseModule {}
+    });
+  }
+}
