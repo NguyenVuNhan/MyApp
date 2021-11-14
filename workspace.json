@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "auth-service": "apps/auth-service"
+    "auth-service": "apps/auth-service",
+    "shared-nest-modules": "libs/shared/nest/modules",
+    "shared-nest-utils": "libs/shared/nest/utils"
   }
 }

@@ -4,17 +4,23 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
+    "start:dev": "nx run-many --projects=auth-service --target=serveDocker",
     "build": "nx build",
     "test": "nx test"
   },
   "private": true,
   "dependencies": {
-    "@nestjs/common": "^7.0.0",
-    "@nestjs/core": "^7.0.0",
+    "@nestjs/common": "^8.2.0",
+    "@nestjs/config": "^1.1.0",
+    "@nestjs/core": "^8.2.0",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/typeorm": "^8.0.2",
+    "joi": "^17.4.2",
+    "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "~6.6.3",
-    "tslib": "^2.0.0"
+    "rxjs": "^7.4.0",
+    "tslib": "^2.0.0",
+    "typeorm": "^0.2.40"
   },
   "devDependencies": {
     "@nestjs/schematics": "^7.0.0",

@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    env_file:
+      - .env.docker
+    networks:
+      - postgres
+
+volumes:
+  postgres: {}
+
+networks:
+  postgres:
+    driver: bridge

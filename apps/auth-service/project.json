@@ -19,8 +19,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/auth-service/src/environments/environment.ts",
-              "with": "apps/auth-service/src/environments/environment.prod.ts"
+              "replace": "apps/auth-service/src/environments/index.ts",
+              "with": "apps/auth-service/src/environments/index.prod.ts"
             }
           ]
         }
@@ -30,6 +30,16 @@
       "executor": "@nrwl/node:execute",
       "options": {
         "buildTarget": "auth-service:build"
+      }
+    },
+    "serveDocker": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose down && docker-compose up -d",
+          "nx run auth-service:serve"
+        ],
+        "cwd": "apps/auth-service"
       }
     },
     "lint": {
