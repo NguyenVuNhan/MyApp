@@ -3,7 +3,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { join } from 'path';
-import { User, Avatar } from '@app/api/shared/user';
+import { User, Avatar } from '@app/user/shared';
+import { AuthenticationModule } from '@app/authentication/module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { User, Avatar } from '@app/api/shared/user';
         POSTGRES_DB: Joi.string().required(),
       }),
     }),
+    AuthenticationModule,
   ],
   controllers: [],
   providers: [],

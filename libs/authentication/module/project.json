@@ -1,0 +1,23 @@
+{
+  "root": "libs/authentication/module",
+  "sourceRoot": "libs/authentication/module/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/authentication/module/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/authentication/module"],
+      "options": {
+        "jestConfig": "libs/authentication/module/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/shared/constances",
+  "sourceRoot": "libs/api/shared/constances/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/shared/constances/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/shared/constances"],
+      "options": {
+        "jestConfig": "libs/api/shared/constances/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,20 +1,20 @@
 {
-  "root": "libs/api/shared/user",
-  "sourceRoot": "libs/api/shared/user/src",
+  "root": "libs/user/module",
+  "sourceRoot": "libs/user/module/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/api/shared/user/**/*.ts"]
+        "lintFilePatterns": ["libs/user/module/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/shared/user"],
+      "outputs": ["coverage/libs/user/module"],
       "options": {
-        "jestConfig": "libs/api/shared/user/jest.config.js",
+        "jestConfig": "libs/user/module/jest.config.js",
         "passWithNoTests": true
       }
     }

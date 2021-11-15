@@ -1,9 +1,13 @@
 {
   "version": 2,
   "projects": {
-    "api-shared-user": "libs/api/shared/user",
+    "api-shared-constances": "libs/api/shared/constances",
+    "api-shared-utils": "libs/api/shared/utils",
     "auth-service": "apps/auth-service",
+    "authentication-module": "libs/authentication/module",
     "shared-nest-modules": "libs/shared/nest/modules",
-    "shared-nest-utils": "libs/shared/nest/utils"
+    "shared-nest-utils": "libs/shared/nest/utils",
+    "user-module": "libs/user/module",
+    "user-shared": "libs/user/shared"
   }
 }
