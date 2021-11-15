@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Entity,
   JoinColumn,
@@ -18,10 +19,15 @@ export class User {
   @Column({ unique: true })
   public email: string;
 
-  @Column()
-  public password: string;
-
   @OneToOne(() => Avatar, (avatar: Avatar) => avatar.owner)
   @JoinColumn()
   public avatar: Avatar;
+
+  @Column()
+  @Exclude()
+  public password: string;
+
+  @Column({ nullable: true })
+  @Exclude()
+  refreshToken: string;
 }

@@ -18,6 +18,7 @@
       "@app/api/shared/constances": ["libs/api/shared/constances/src/index.ts"],
       "@app/api/shared/utils": ["libs/api/shared/utils/src/index.ts"],
       "@app/authentication/module": ["libs/authentication/module/src/index.ts"],
+      "@app/authentication/shared": ["libs/authentication/shared/src/index.ts"],
       "@app/shared/nest/modules": ["libs/shared/nest/modules/src/index.ts"],
       "@app/shared/nest/utils": ["libs/shared/nest/utils/src/index.ts"],
       "@app/user/module": ["libs/user/module/src/index.ts"],
