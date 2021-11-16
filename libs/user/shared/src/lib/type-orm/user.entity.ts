@@ -23,9 +23,16 @@ export class User {
   @JoinColumn()
   public avatar: Avatar;
 
+  @Column({ default: false })
+  enabled2fa: boolean;
+
   @Column()
   @Exclude()
   public password: string;
+
+  @Column({ nullable: true })
+  @Exclude()
+  secret2fa: string;
 
   @Column({ nullable: true })
   @Exclude()

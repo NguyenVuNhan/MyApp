@@ -80,6 +80,13 @@ export class AuthenticationService {
     };
   }
 
+  public getCookieForLogOut() {
+    return [
+      `Authentication=; HttpOnly; Path=/; Max-Age=0`,
+      'Refresh=; HttpOnly; Path=/; Max-Age=0',
+    ];
+  }
+
   private async verifyPassword(
     plainTextPassword: string,
     hashedPassword: string

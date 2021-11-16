@@ -5,10 +5,12 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { environment } from './environments';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
+  app.use(cookieParser());
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new AppValidationPipe());
 

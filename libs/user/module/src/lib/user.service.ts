@@ -1,5 +1,5 @@
 import { CreateUserDto, User } from '@app/user/shared';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
@@ -20,10 +20,33 @@ export class UserService {
     return this.userRepository.findOne({ email });
   }
 
+  async getById(id: number) {
+    const user = await this.userRepository.findOne({ id });
+    if (user) {
+      return user;
+    }
+    throw new NotFoundException('User with this id does not exist');
+  }
+
   async setRefreshToken(token: string, userId: number) {
     const refreshToken = await bcrypt.hash(token, 10);
-    await this.userRepository.update(userId, {
+    await this.userRepository.update(userId, { refreshToken });
+  }
+
+  async removeRefreshToken(userId: number) {
+    return this.userRepository.update(userId, { refreshToken: null });
+  }
+
+  async getUserIfRefreshTokenMatches(refreshToken: string, userId: number) {
+    const user = await this.getById(userId);
+
+    const isRefreshTokenMatching = await bcrypt.compare(
       refreshToken,
-    });
+      user.refreshToken
+    );
+
+    if (isRefreshTokenMatching) {
+      return user;
+    }
   }
 }

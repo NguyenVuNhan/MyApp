@@ -1,4 +1,6 @@
 import {
+  JwtRefreshTokenGuard,
+  JwtTokenGuard,
   LocalAuthenticationGuard,
   RequestWithUser,
 } from '@app/authentication/shared';
@@ -8,6 +10,7 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Get,
   HttpCode,
   Post,
   Req,
@@ -47,5 +50,25 @@ export class AuthenticationController {
   @Post('register')
   async register(@Body() user: CreateUserDto) {
     return this.authenticationService.register(user);
+  }
+
+  @UseGuards(JwtRefreshTokenGuard)
+  @Get('refresh')
+  refresh(@Req() request: RequestWithUser) {
+    const accessTokenCookie =
+      this.authenticationService.getCookieWithJwtAccessToken(request.user.id);
+
+    request.res.setHeader('Set-Cookie', accessTokenCookie);
+    return request.user;
+  }
+
+  @UseGuards(JwtTokenGuard)
+  @Get('logout')
+  async logout(@Req() request: RequestWithUser) {
+    await this.userService.removeRefreshToken(request.user.id);
+    request.res.setHeader(
+      'Set-Cookie',
+      this.authenticationService.getCookieForLogOut()
+    );
   }
 }
