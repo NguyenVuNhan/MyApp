@@ -2,9 +2,13 @@
   "cSpell.words": [
     "UNPROCESSABLE",
     "constances",
+    "keyuri",
     "nestjs",
     "nrwl",
+    "otpauth",
+    "otplib",
     "postgresql",
+    "qrcode",
     "typeorm"
   ]
 }

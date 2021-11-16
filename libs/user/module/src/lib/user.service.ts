@@ -49,4 +49,12 @@ export class UserService {
       return user;
     }
   }
+
+  async enable2fa(userId: number, isEnabled = true) {
+    await this.userRepository.update(userId, { enabled2fa: isEnabled });
+  }
+
+  async set2faSecret(userId: number, secret: string) {
+    await this.userRepository.update(userId, { secret2fa: secret });
+  }
 }

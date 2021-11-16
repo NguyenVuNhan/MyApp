@@ -6,12 +6,15 @@ import { AuthenticationController } from './authentication.controller';
 import { AuthenticationService } from './authentication.service';
 import { JwtRefreshTokenStrategy, LocalStrategy } from './strategies';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.controller';
+import { TwoFactorAuthService } from './two-factor-auth/two-factor-auth.service';
 
 @Module({
   imports: [UserModule, ConfigModule, JwtModule.register({})],
-  controllers: [AuthenticationController],
+  controllers: [AuthenticationController, TwoFactorAuthController],
   providers: [
     AuthenticationService,
+    TwoFactorAuthService,
     LocalStrategy,
     JwtStrategy,
     JwtRefreshTokenStrategy,

@@ -17,6 +17,8 @@ import { AuthenticationModule } from '@app/authentication/module';
         NODE_ENV: Joi.string()
           .valid('development', 'production', 'test')
           .default('development'),
+        TWO_FACTOR_AUTHENTICATION_APP_NAME: Joi.string().required(),
+
         // JWT
         JWT_ACCESS_TOKEN_SECRET: Joi.string().required(),
         JWT_ACCESS_TOKEN_EXPIRATION_TIME: Joi.string().required(),
