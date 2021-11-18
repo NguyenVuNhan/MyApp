@@ -28,6 +28,9 @@ import { AuthenticationModule } from '@app/authentication/module';
         // Oauth2 google
         GOOGLE_CLIENT_ID: Joi.string().required(),
         GOOGLE_CLIENT_SECRET: Joi.string().required(),
+        // Oauth2 facebook
+        FACEBOOK_CLIENT_ID: Joi.string().required(),
+        FACEBOOK_CLIENT_SECRET: Joi.string().required(),
         // Postgres
         POSTGRES_HOST: Joi.string().required(),
         POSTGRES_PORT: Joi.number().required(),

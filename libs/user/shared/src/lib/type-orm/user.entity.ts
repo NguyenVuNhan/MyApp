@@ -1,10 +1,10 @@
 import { Exclude } from 'class-transformer';
 import {
+  Column,
   Entity,
   JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
-  Column,
 } from 'typeorm';
 import { Avatar } from './avatar.entity';
 
@@ -13,11 +13,11 @@ export class User {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column({ unique: true })
   public name: string;
 
-  @Column({ unique: true })
-  public email: string;
+  @Column({ unique: true, nullable: true })
+  public email?: string;
 
   @OneToOne(() => Avatar, (avatar: Avatar) => avatar.owner)
   @JoinColumn()

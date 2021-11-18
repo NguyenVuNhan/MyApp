@@ -11,13 +11,20 @@ export class UserService {
   ) {}
 
   async create(user: CreateUserDto) {
+    return this.createWithoutEmail(user);
+  }
+
+  async createWithoutEmail(user: Omit<CreateUserDto, 'email'>) {
     const newUser = this.userRepository.create(user);
     await this.userRepository.save(user);
     return newUser;
   }
 
-  async getByEmail(email: string) {
-    return this.userRepository.findOne({ email });
+  async getByNameOrEmail(nameOrEmail: string) {
+    const data = nameOrEmail.normalize('NFC');
+    return this.userRepository.findOne({
+      where: [{ email: data }, { name: data }],
+    });
   }
 
   async getById(id: number) {

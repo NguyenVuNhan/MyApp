@@ -23,7 +23,7 @@ export class GoogleOAuthStrategy extends PassportStrategy(Strategy, 'google') {
     const { emails, displayName } = profile;
     const user = {
       email: emails[0].value,
-      name: displayName,
+      name: displayName.normalize('NFC'),
       // TODO: These data are not using. Maybe later in the future
       // picture: photos[0].value,
       // accessToken,
