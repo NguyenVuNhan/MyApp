@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Avatar } from './avatar.entity';
+import { Role } from '@app/api/shared/constances';
 
 @Entity()
 export class User {
@@ -18,6 +19,13 @@ export class User {
 
   @Column({ unique: true, nullable: true })
   public email?: string;
+
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.User,
+  })
+  public role: Role;
 
   @OneToOne(() => Avatar, (avatar: Avatar) => avatar.owner)
   @JoinColumn()

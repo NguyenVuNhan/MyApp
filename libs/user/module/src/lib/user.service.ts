@@ -1,8 +1,10 @@
-import { CreateUserDto, User } from '@app/user/shared';
+import { CreateUserDto } from '@app/user/shared';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
+import { NORMALIZE_TYPE } from '@app/api/shared/constances';
+import { User } from '@app/api/shared/type-orm';
 
 @Injectable()
 export class UserService {
@@ -21,7 +23,7 @@ export class UserService {
   }
 
   async getByNameOrEmail(nameOrEmail: string) {
-    const data = nameOrEmail.normalize('NFC');
+    const data = nameOrEmail.normalize(NORMALIZE_TYPE);
     return this.userRepository.findOne({
       where: [{ email: data }, { name: data }],
     });

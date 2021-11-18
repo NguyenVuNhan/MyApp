@@ -1,20 +1,20 @@
 {
-  "root": "libs/shared/nest/utils",
-  "sourceRoot": "libs/shared/nest/utils/src",
+  "root": "libs/api/nest/modules",
+  "sourceRoot": "libs/api/nest/modules/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/shared/nest/utils/**/*.ts"]
+        "lintFilePatterns": ["libs/api/nest/modules/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/nest/utils"],
+      "outputs": ["coverage/libs/api/nest/modules"],
       "options": {
-        "jestConfig": "libs/shared/nest/utils/jest.config.js",
+        "jestConfig": "libs/api/nest/modules/jest.config.js",
         "passWithNoTests": true
       }
     }

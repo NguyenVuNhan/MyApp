@@ -1,10 +1,10 @@
-import { PostgresTypeOrmDatabaseModule } from '@app/shared/nest/modules';
+import { PostgresTypeOrmDatabaseModule } from '@app/api/nest/modules';
+import { Avatar, User } from '@app/api/shared/type-orm';
+import { AuthenticationModule } from '@app/authentication/module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { join } from 'path';
-import { User, Avatar } from '@app/user/shared';
-import { AuthenticationModule } from '@app/authentication/module';
 
 @Module({
   imports: [

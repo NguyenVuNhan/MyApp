@@ -1,3 +1,4 @@
+import { NORMALIZE_TYPE } from '@app/api/shared/constances';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
@@ -23,7 +24,7 @@ export class GoogleOAuthStrategy extends PassportStrategy(Strategy, 'google') {
     const { emails, displayName } = profile;
     const user = {
       email: emails[0].value,
-      name: displayName.normalize('NFC'),
+      name: displayName.normalize(NORMALIZE_TYPE),
       // TODO: These data are not using. Maybe later in the future
       // picture: photos[0].value,
       // accessToken,

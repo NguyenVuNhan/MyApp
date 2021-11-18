@@ -1,5 +1,5 @@
 import { AppValidationPipe } from '@app/api/shared/utils';
-import { runInCluster } from '@app/shared/nest/utils';
+import { runInCluster } from '@app/api/nest/utils';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';

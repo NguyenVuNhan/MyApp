@@ -1,3 +1,4 @@
+import { NORMALIZE_TYPE } from '@app/api/shared/constances';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
@@ -26,7 +27,7 @@ export class FacebookOAuthStrategy extends PassportStrategy(
   ) => {
     const { displayName } = profile;
     const user = {
-      name: displayName.normalize('NFC'),
+      name: displayName.normalize(NORMALIZE_TYPE),
     };
 
     done(null, user);

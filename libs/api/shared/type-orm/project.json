@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/shared/type-orm",
+  "sourceRoot": "libs/api/shared/type-orm/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/shared/type-orm/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/shared/type-orm"],
+      "options": {
+        "jestConfig": "libs/api/shared/type-orm/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

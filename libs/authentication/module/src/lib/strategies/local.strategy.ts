@@ -1,4 +1,4 @@
-import { User } from '@app/user/shared';
+import { User } from '@app/api/shared/type-orm';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';

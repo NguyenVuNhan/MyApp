@@ -1,8 +1,8 @@
-import { User } from '@app/user/shared';
+import { User } from '@app/api/shared/type-orm';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserService } from './user.service';
 import { UserController } from './user.controller';
+import { UserService } from './user.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],

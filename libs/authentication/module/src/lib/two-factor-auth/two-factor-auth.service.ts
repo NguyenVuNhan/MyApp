@@ -1,10 +1,10 @@
+import { User } from '@app/api/shared/type-orm';
+import { UserService } from '@app/user/module';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 import { authenticator } from 'otplib';
 import { toFileStream } from 'qrcode';
-import { User } from '@app/user/shared';
-import { UserService } from '@app/user/module';
 
 @Injectable()
 export class TwoFactorAuthService {
