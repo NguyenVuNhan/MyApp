@@ -6,10 +6,12 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import console = require('console');
 
 @Injectable()
 export class AuthenticationService {
@@ -38,12 +40,15 @@ export class AuthenticationService {
   }
 
   async getAuthenticatedUser(nameOrEmail: string, password: string) {
+    const user = await this.userService.getByNameOrEmail(nameOrEmail);
+    if (!user) throw new NotFoundException('User not found');
+
     try {
-      const user = await this.userService.getByNameOrEmail(nameOrEmail);
       await this.verifyPassword(password, user.password);
       user.password = undefined;
       return user;
     } catch (error) {
+      console.log(error);
       throw new BadRequestException('Wrong credentials provided');
     }
   }
