@@ -1,10 +1,10 @@
+import { NORMALIZE_TYPE } from '@app/api/shared/constances';
+import { User } from '@app/api/shared/type-orm';
 import { CreateUserDto } from '@app/user/shared';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
-import { Repository } from 'typeorm';
-import { NORMALIZE_TYPE } from '@app/api/shared/constances';
-import { User } from '@app/api/shared/type-orm';
+import { FindManyOptions, MoreThan, Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
@@ -12,7 +12,30 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>
   ) {}
 
-  async create(user: CreateUserDto) {
+  async getAllUser(offset?: number, limit?: number, startId?: number) {
+    const where: FindManyOptions<User>['where'] = {};
+    let separateCount = 0;
+    if (startId) {
+      where.id = MoreThan(startId);
+      separateCount = await this.userRepository.count();
+    }
+
+    const [items, count] = await this.userRepository.findAndCount({
+      order: {
+        id: 'ASC',
+      },
+      skip: offset,
+      take: limit,
+      where,
+    });
+
+    return {
+      items,
+      count: startId ? separateCount : count,
+    };
+  }
+
+  create(user: CreateUserDto) {
     return this.createWithoutEmail(user);
   }
 
